@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    span{
+
+    }
+    .success{
+      background-color:lightGreen;
+      color:green;
+      border:green 1px solid ;
+    }
+    .fail{
+      background-color:pink;
+      color:red;
+      border:red 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <!--1. 做界面
+    1.1 唯一父元素
+    1.2 找可能发生变化的位置
+    本例中: 
+    input的内容也会由人主动修改，所以用双向绑定: phone
+    span的class有两种变化: success和fail
+    span的内容也可能变化: msg-->
+  <div id="app">
+    手机号:<input type="text" v-model="phone">
+    <!-- <span :class="{success:success, fail:fail}">{{msg}}</span> -->
+    <span :class="span1Class">{{msg1}}</span>
+  </br>
+    身份证号:<input type="text" v-model="pid">
+    <!-- <span :class="{success:success, fail:fail}">{{msg}}</span> -->
+    <span :class="span2Class">{{msg2}}</span>
+  </div>
+  <script>
+    //2. 创建new Vue()对象
+    new Vue({
+      el:"#app",
+      //3. 创建模型对象:
+      //本例中: 因为界面上需要几个变量，所以 
+      data:{
+        phone:"",
+        pid:"",
+        //支持手机号验证的样式和内容
+        span1Class:{
+          success:false,
+          fail:false
+        },
+        msg1:"",
+        //支持身份证号验证的样式和内容
+        span2Class:{
+          success:false,
+          fail:false
+        },
+        msg2:""
+      },
+      //想希望边输入就边验证,watch！
+      watch:{
+        //要监视手机号的变化: 
+        phone(){
+          //定义正则表达式： 
+          var reg=/^1[3-9]\d{9}$/;
+          //如果用正则验证phone，通过
+          if(reg.test(this.phone)){
+            //就修改success为true，
+            this.span1Class.success=true;
+            //修改fail为false
+            this.span1Class.fail=false;
+            //修改msg的内容为√手机号格式正确
+            this.msg1=" √ 手机号格式正确";
+          }else{//否则如果验证不同
+            //就修改success为false，
+            this.span1Class.success=false;
+            //修改fail为true
+            this.span1Class.fail=true;
+            //修改msg的内容为×手机号格式不正确
+            this.msg1=" × 手机号格式不正确";
+          }
+        },
+        //要监视身份证号的变化: 
+        pid(){
+          //定义正则表达式： 
+          var reg=/^\d{15}(\d\d[0-9x])?$/i;
+          //如果用正则验证pid，通过
+          if(reg.test(this.pid)){
+            //就修改success为true，
+            this.span2Class.success=true;
+            //修改fail为false
+            this.span2Class.fail=false;
+            //修改msg的内容为√身份证号格式正确
+            this.msg2=" √ 身份证号格式正确";
+          }else{//否则如果验证不同
+            //就修改success为false，
+            this.span2Class.success=false;
+            //修改fail为true
+            this.span2Class.fail=true;
+            //修改msg的内容为×身份证号格式不正确
+            this.msg2=" × 身份证号格式不正确";
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    
+    <style>
+       
+        .success{
+          background-color:lightGreen;
+          color:green;
+          border:green 1px solid ;
+        }
+        .fail{
+          background-color:pink;
+          color:red;
+          border:red 1px solid;
+        }
+        </style>
+</head>
+<body>
+    <div id="app">
+     请输入手机号:<input type="text" v-model="phone"><span :class="{lok:lok,unot:unot}">{{msg}}</span>
+    </div>
+    <script>
+        new Vue({
+        el:"#app",
+        data:{
+            phone:"",
+            msg:"",
+           lok:false,
+           unot:false
+        },
+        watch:{
+            phone(){
+                var reg=/^1[3-9]\d{9}$/;
+                if(reg.test(this.phone)){
+                    this.lok=true;
+                    this.unot=false;
+                    this.msg=" √ 手机号格式正确";
+             }else{
+             this.lok=false;
+             this.unot=true;
+             this.msg=" × 手机号格式错误";
+             }
+            }
+        }
+        })
+    </script>
+</body>
+</html>

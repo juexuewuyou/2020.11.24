@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        #d3,#d5{
+           position:fixed;
+           width:65px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <img id="d3"  src="img/p3.png" :style="p3Style">
+       <img id="d5"  src="img/p5.png" :style="p5Style">d
+    
+    </div>
+    <script>
+     var vm= new Vue({
+            el:"#app",
+            data:{
+                p3Style:{
+                    left:"200px",
+                top:"400px"
+                },
+                p5Style:{
+                    left:"400px",
+                top:"400px"
+                }
+            }
+        })
+        window.onkeydown=function(e){
+            //==============p3=================
+            if(e.keyCode==37){
+                var l=parseInt(vm.p3Style.left);
+                l-=10;
+                vm.p3Style.left=`${l}px`
+            }else if(e.keyCode==38){
+                var t=parseInt(vm.p3Style.top);
+                t-=10;
+                vm.p3Style.top=`${t}px`
+            }else if(e.keyCode==39){
+                var l=parseInt(vm.p3Style.left);
+                l+=10;
+                vm.p3Style.left=`${l}px`
+            }else if(e.keyCode==40){
+                var t=parseInt(vm.p3Style.top);
+                t+=10;
+                vm.p3Style.top=`${t}px`
+            }
+            // ============p5=================
+            if(e.keyCode==65){
+                // 如果是a
+                var l=parseInt(vm.p5Style.left);
+                l-=10;
+                vm.p5Style.left=`${l}px`
+            }else if(e.keyCode==87){
+                //如果是w
+                var t=parseInt(vm.p5Style.top);
+                t-=10;
+                vm.p5Style.top=`${t}px`
+            }else if(e.keyCode==68){
+                //如果是d
+                var l=parseInt(vm.p5Style.left);
+                l+=10;
+                vm.p5Style.left=`${l}px`
+            }else if(e.keyCode==83){
+                 //如果是s
+                var t=parseInt(vm.p5Style.top);
+                t+=10;
+                vm.p5Style.top=`${t}px`
+            }
+        
+        }
+        
+    </script>
+</body>
+</html>

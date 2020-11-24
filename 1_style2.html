@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+    img{
+      position:fixed;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <img id="p3" :style="p3Style" src="img/p3.png" alt="">
+    <img id="p5" :style="p5Style" src="img/p5.png" alt="">
+  </div>
+  <script>
+    var vm=new Vue({
+      el:"#app",
+      data:{
+        p3Style:{
+          top:"200px",
+          left:"200px"
+        },
+        p5Style:{
+          top:"300px",
+          left:"400px"
+        }
+      }
+    })
+
+    window.onkeydown=function(e){
+      console.log(e.keyCode);
+      if(e.keyCode==37){//左
+        //先获得vm中p3Style内的left
+        var l=parseInt(vm.p3Style.left);
+        //将l-10
+        l-=10;
+        //将新l再保存回vm中p3Style内的left中
+        vm.p3Style.left=`${l}px`;
+      }else if(e.keyCode==38){//上
+        //先获得vm的top
+        var t=parseInt(vm.p3Style.top);
+        //将t-10
+        t-=10;
+        //将新t再保存回vm.left中
+        vm.p3Style.top=`${t}px`;
+      }else if(e.keyCode==39){//右
+        //先获得vm的left
+        var l=parseInt(vm.p3Style.left);
+        //将l+10
+        l+=10;
+        //将新l再保存回vm.left中
+        vm.p3Style.left=`${l}px`;
+      }else if(e.keyCode==40){//下
+        //先获得vm的top
+        var t=parseInt(vm.p3Style.top);
+        //将t+10
+        t+=10;
+        //将新t再保存回vm.left中
+        vm.p3Style.top=`${t}px`;
+      }
+      
+      
+      if(e.keyCode==65){//a
+        //先获得vm中p5Style内的left
+        var l=parseInt(vm.p5Style.left);
+        //将l-10
+        l-=10;
+        //将新l再保存回vm中p5Style内的left中
+        vm.p5Style.left=`${l}px`;
+      }else if(e.keyCode==87){//w
+        //先获得vm的top
+        var t=parseInt(vm.p5Style.top);
+        //将t-10
+        t-=10;
+        //将新t再保存回vm.left中
+        vm.p5Style.top=`${t}px`;
+      }else if(e.keyCode==68){//d
+        //先获得vm的left
+        var l=parseInt(vm.p5Style.left);
+        //将l+10
+        l+=10;
+        //将新l再保存回vm.left中
+        vm.p5Style.left=`${l}px`;
+      }else if(e.keyCode==83){//s
+        //先获得vm的top
+        var t=parseInt(vm.p5Style.top);
+        //将t+10
+        t+=10;
+        //将新t再保存回vm.left中
+        vm.p5Style.top=`${t}px`;
+      }
+    }
+  </script>
+</body>
+</html>
